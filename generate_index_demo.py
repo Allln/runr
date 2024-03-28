@@ -21,9 +21,9 @@ def generate_random_points(centroid, distance, num_points):
         nodes = nodes.drop(index)
     return points
 
-centroid = (69.6471286, 18.9210447)
+centroid = (69.6587586, 18.9397725)
 distance = 1000
-num_points = 1
+num_points = 5
 random_points = generate_random_points(centroid, distance, num_points)
 
 map_center = list(reversed(centroid))
