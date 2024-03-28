@@ -73,10 +73,43 @@
 
     var markersLayer = new L.LayerGroup().addTo(map_7d35a53c9e585e88dcd08f0981e271d1);
 
-    function generateRandomPoints(centroid, distance, numPoints) {
-        // Implement this function to generate random points as needed
-        // You may use libraries like OSMnx or other methods to generate points
+async function generateRandomPoints(centroid, distance, numPoints) {
+    // Define the base URL for the Overpass API
+    const baseUrl = 'https://overpass-api.de/api/interpreter';
+
+    // Define the query to fetch random points within the specified distance from the centroid
+    const query = `[out:json]; 
+        (
+            node(around:${distance},${centroid[0]},${centroid[1]});
+            way(around:${distance},${centroid[0]},${centroid[1]});
+            relation(around:${distance},${centroid[0]},${centroid[1]});
+        );
+        out center;`;
+
+    try {
+        // Fetch data from the Overpass API
+        const response = await fetch(`${baseUrl}?data=${encodeURIComponent(query)}`);
+        const data = await response.json();
+
+        // Extract random points from the response
+        const randomPoints = [];
+        const elements = data.elements;
+        for (let i = 0; i < Math.min(numPoints, elements.length); i++) {
+            const element = elements[i];
+            if (element.type === 'node') {
+                randomPoints.push([element.lat, element.lon]);
+            } else if (element.type === 'way' || element.type === 'relation') {
+                randomPoints.push([element.center.lat, element.center.lon]);
+            }
+        }
+
+        return randomPoints;
+    } catch (error) {
+        console.error('Error fetching random points:', error);
+        return [];
     }
+}
+
 
     function checkDistance(currentPosition, randomPoints) {
         randomPoints.forEach(function(point) {
