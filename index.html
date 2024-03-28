@@ -25,7 +25,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_7d35a53c9e585e88dcd08f0981e271d1 {
+                #map_abbf218a1aae04dfe01d2803e98af958 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -41,99 +41,91 @@
 <body>
     
     
-            <div class="folium-map" id="map_7d35a53c9e585e88dcd08f0981e271d1" ></div>
+            <div class="folium-map" id="map_abbf218a1aae04dfe01d2803e98af958" ></div>
         
 </body>
 <script>
-    var map_7d35a53c9e585e88dcd08f0981e271d1 = L.map(
-        "map_7d35a53c9e585e88dcd08f0981e271d1", {
-            center: [18.9210447, 69.6471286],
-            crs: L.CRS.EPSG3857,
-            zoom: 15,
-            zoomControl: true,
-            preferCanvas: false,
-        }
-    );
+    
+    
+            var map_abbf218a1aae04dfe01d2803e98af958 = L.map(
+                "map_abbf218a1aae04dfe01d2803e98af958",
+                {
+                    center: [18.9397725, 69.6587586],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 15,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
 
-    var tile_layer_21e2ad384af0796a27135c41797a6d22 = L.tileLayer(
-        "https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-            "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
-            "detectRetina": false,
-            "maxNativeZoom": 19,
-            "maxZoom": 19,
-            "minZoom": 0,
-            "noWrap": false,
-            "opacity": 1,
-            "subdomains": "abc",
-            "tms": false
-        }
-    );
+            
 
-    tile_layer_21e2ad384af0796a27135c41797a6d22.addTo(map_7d35a53c9e585e88dcd08f0981e271d1);
-
-    var markersLayer = new L.LayerGroup().addTo(map_7d35a53c9e585e88dcd08f0981e271d1);
-
-async function generateRandomPoints(centroid, distance, numPoints) {
-    // Define the base URL for the Overpass API
-    const baseUrl = 'https://overpass-api.de/api/interpreter';
-
-    // Define the query to fetch random points within the specified distance from the centroid
-    const query = `[out:json]; 
-        (
-            node(around:${distance},${centroid[0]},${centroid[1]});
-            way(around:${distance},${centroid[0]},${centroid[1]});
-            relation(around:${distance},${centroid[0]},${centroid[1]});
-        );
-        out center;`;
-
-    try {
-        // Fetch data from the Overpass API
-        const response = await fetch(`${baseUrl}?data=${encodeURIComponent(query)}`);
-        const data = await response.json();
-
-        // Extract random points from the response
-        const randomPoints = [];
-        const elements = data.elements;
-        for (let i = 0; i < Math.min(numPoints, elements.length); i++) {
-            const element = elements[i];
-            if (element.type === 'node') {
-                randomPoints.push([element.lat, element.lon]);
-            } else if (element.type === 'way' || element.type === 'relation') {
-                randomPoints.push([element.center.lat, element.center.lon]);
-            }
-        }
-
-        return randomPoints;
-    } catch (error) {
-        console.error('Error fetching random points:', error);
-        return [];
-    }
-}
-
-
-    function checkDistance(currentPosition, randomPoints) {
-        randomPoints.forEach(function(point) {
-            var distance = L.latLng(currentPosition).distanceTo(L.latLng(point));
-            if (distance < 100) {
-                var newRandomPoints = generateRandomPoints(currentPosition, 1000, 1);
-                newRandomPoints.forEach(function(newPoint) {
-                    L.marker(newPoint).addTo(markersLayer);
+        
+    
+            var tile_layer_4c8cb2b9f3c9922de1c0e056be53b767 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_4c8cb2b9f3c9922de1c0e056be53b767.addTo(map_abbf218a1aae04dfe01d2803e98af958);
+        
+    
+            var marker_aba36c670de4780d054e41e4fbb44234 = L.marker(
+                [69.6640964, 18.9274611],
+                {}
+            ).addTo(map_abbf218a1aae04dfe01d2803e98af958);
+        
+    
+            var marker_77290ac4d8136d8d6f421778c19b04af = L.marker(
+                [69.6503137, 18.9316585],
+                {}
+            ).addTo(map_abbf218a1aae04dfe01d2803e98af958);
+        
+    
+            var marker_47a390ae94d94dfd5e023e1e97f52dc1 = L.marker(
+                [69.6605553, 18.9172582],
+                {}
+            ).addTo(map_abbf218a1aae04dfe01d2803e98af958);
+        
+    
+            var marker_347ec3c3c40ee38a70790d9d731ac5e3 = L.marker(
+                [69.6512147, 18.9443743],
+                {}
+            ).addTo(map_abbf218a1aae04dfe01d2803e98af958);
+        
+    
+            var marker_0518826fa658274fe8fcebee4298bebc = L.marker(
+                [69.6508205, 18.9392751],
+                {}
+            ).addTo(map_abbf218a1aae04dfe01d2803e98af958);
+        
+    
+            var locate_control_0c0ae62b402a96a8db01c1d16141d15d = L.control.locate(
+                {}
+            ).addTo(map_abbf218a1aae04dfe01d2803e98af958);
+            
+            var markers = Object.keys(window)
+                .filter(function(key) {
+                    return key.startsWith('marker_');
+                })
+                .map(function(key) {
+                    return window[key];
                 });
-            }
-        });
-    }
 
-    function onLocationFound(e) {
-        var currentPosition = e.latlng;
-        var randomPoints = generateRandomPoints(currentPosition, 1000, 1);
-        randomPoints.forEach(function(point) {
-            L.marker(point).addTo(markersLayer);
-        });
-        checkDistance(currentPosition, randomPoints);
-    }
+            map_abbf218a1aae04dfe01d2803e98af958.on('moveend', function() {
+                var center = map_abbf218a1aae04dfe01d2803e98af958.getCenter();
 
-    map_7d35a53c9e585e88dcd08f0981e271d1.on('locationfound', onLocationFound);
-
-    L.control.locate().addTo(map_7d35a53c9e585e88dcd08f0981e271d1);
+                markers.forEach(function(marker) {
+                    var markerLatLng = marker.getLatLng();
+                    var distance = center.distanceTo(markerLatLng);
+                    if (distance < 50) {
+                        marker.setIcon(L.AwesomeMarkers.icon({
+                            icon: 'leaf',
+                            markerColor: 'green'
+                        }));
+                    }
+                });
+            });
 </script>
 </html>
