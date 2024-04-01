@@ -130,7 +130,6 @@
                 {}
             ).addTo(map_dea55d571647098a997ac3e8e9d76c74);
         
-    
             var currentLocation;
 
             var locate_control_0c0ae62b402a96a8db01c1d16141d15d = L.control.locate({
@@ -162,26 +161,28 @@
                 });
 
             map_dea55d571647098a997ac3e8e9d76c74.on('moveend', function() {
-                if (!currentLocation) return; // Wait until current location is found
+            if (!currentLocation) return; // Wait until current location is found
 
-                var allTurnedToLeaf = markers.every(function(marker) {
-                    var markerLatLng = marker.getLatLng();
-                    var distance = currentLocation.distanceTo(markerLatLng);
-                    if (distance < 25) {
-                        marker.setIcon(L.AwesomeMarkers.icon({
-                            icon: 'leaf',
-                            markerColor: 'green'
-                        }));
-                        return true;
-                    } else {
-                        return false;
-                    }
-                });
+            var allMarkersAreLeaf = markers.every(function(marker) {
+                return marker.options.icon.options.icon === 'leaf';
+            });
 
-                if (allTurnedToLeaf) {
-                    alert("Find the nearest open restaurant and eat something!"); // Display victory message
+            if (allMarkersAreLeaf) {
+                alert("Go eat something at the nearest cafe/restaurant");
+            }
+
+            markers.forEach(function(marker) {
+                var markerLatLng = marker.getLatLng();
+                var distance = currentLocation.distanceTo(markerLatLng);
+                if (distance < 25) {
+                    marker.setIcon(L.AwesomeMarkers.icon({
+                        icon: 'leaf',
+                        markerColor: 'green'
+                    }));
                 }
             });
+        });
+
             
         
 </script>
